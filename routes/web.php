@@ -2,15 +2,17 @@
 
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
+use App\Livewire\TransferForm;
+use App\Livewire\TransactionList;
 
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::view('dashboard', 'dashboard')
-    // ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+Route::get('/transferencias',TransferForm::class)->name('transferencias');
+Route::get('/transferencias/lista', TransactionList::class)->name('transferencias.lista');
 
+Route::view('dashboard', 'dashboard')->name('dashboard');
 // Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
 
