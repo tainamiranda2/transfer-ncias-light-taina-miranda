@@ -9,6 +9,8 @@ use App\Models\Wallet;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
+use App\Notifications\TransferReceived;
+
 class TransferForm extends Component
 {
     public $payer_id;
@@ -61,6 +63,9 @@ class TransferForm extends Component
 
         session()->flash('success', 'Transferência realizada com sucesso!');
         $this->reset(['payer_id', 'payee_id', 'amount']);
+        $payee->notify(new TransferReceived($this->amount));
+
+
     }
 
 

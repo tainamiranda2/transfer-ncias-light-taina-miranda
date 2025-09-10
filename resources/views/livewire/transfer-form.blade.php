@@ -1,4 +1,8 @@
-<div class="max-w-md mx-auto p-6 bg-white rounded-xl shadow-md">
+<div class="max-w-md mx-auto p-10 bg-white rounded-xl shadow-md">
+    <a href="{{ route('transferencias.lista') }}">
+            <button type="button">Voltar para Lista</button>
+        </a>
+
     <h2 class="text-lg font-bold mb-4">Nova Transferência</h2>
 
     @if (session('success'))
@@ -40,8 +44,6 @@
             class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded">
             Transferir
         </button>
-          <a href="{{ route('transferencias.lista') }}">
-            <button type="button">Voltar para Lista</button>
-        </a>
+          
     </form>
 </div>
