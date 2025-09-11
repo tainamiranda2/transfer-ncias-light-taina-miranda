@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Wallet;
+use App\Models\User;
+
 class WalletSeeder extends Seeder
 {
     /**
@@ -12,14 +14,12 @@ class WalletSeeder extends Seeder
      */
     public function run(): void
     {
-        Wallet::create([
-            'user_id' => 1, 
-            'balance' => 1000,
-        ]);
-
-        Wallet::create([
-            'user_id' => 2, 
-            'balance' => 5000,
-        ]);
+       User::doesntHave('wallet')->get()->each(function ($user) {
+            Wallet::create([
+                'user_id' => $user->id,
+                'balance' => rand(0, 5000), 
+            ]);
+        });
+    
     }
 }

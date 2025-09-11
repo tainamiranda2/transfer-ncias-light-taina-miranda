@@ -60,10 +60,19 @@ class User extends Authenticatable
             ->map(fn ($word) => Str::substr($word, 0, 1))
             ->implode('');
     }
-    
+
     public function wallet()
     {
         return $this->hasOne(Wallet::class);
+    }
+    
+    protected static function booted()
+    {
+        static::created(function ($user) {
+            $user->wallet()->create([
+                'balance' => 0, 
+            ]);
+        });
     }
 
     public function transactions()

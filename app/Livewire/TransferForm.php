@@ -32,6 +32,10 @@ class TransferForm extends Component
             $this->addError('payer_id', 'Lojistas não podem enviar dinheiro.');
             return;
         }
+        if (!$payer->wallet) {
+            $this->addError('payer_id', 'Usuário não possui carteira.');
+            return;
+        }
 
         if ($payer->wallet->balance < $this->amount) {
             $this->addError('amount', 'Saldo insuficiente.');

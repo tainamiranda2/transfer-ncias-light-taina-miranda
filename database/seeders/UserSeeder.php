@@ -15,20 +15,11 @@ class UserSeeder extends Seeder
 
     public function run(): void
     {
-        User::create([
-            'name' => 'Alice Comum',
-            'email' => 'alice@example.com',
-            'password' => Hash::make('12345678'),
-            'cpf_cnpj' => '12345678901',
-            'tipo_user' => 'comum',
-        ]);
+    
+
+        User::factory()->count(5)->create(['tipo_user' => 'comum']);
+
+        User::factory()->count(5)->create(['tipo_user' => 'lojista']);
         
-        User::create([
-            'name' => 'Loja XYZ',
-            'email' => 'lojista@example.com',
-            'password' => Hash::make('12345678'),
-            'cpf_cnpj' => '98765432100',
-            'tipo_user' => 'lojista',
-        ]);
     }
 }
